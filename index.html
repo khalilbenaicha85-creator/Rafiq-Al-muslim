@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#073f35">
-<title>رفيق المسلم</title>
-
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+ 
 <style>
 *{box-sizing:border-box}
 body{
@@ -157,6 +158,12 @@ function home(){
  document.getElementById('content').innerHTML=original;
 }
 </script>
-
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js");
+  });
+}
+</script>
 </body>
 </html>
