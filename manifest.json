@@ -1,0 +1,21 @@
+{
+  "name": "رفيق المسلم",
+  "short_name": "رفيق المسلم",
+  "description": "رفيقك اليومي للقرآن والأذكار والعبادات",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f4ec",
+  "theme_color": "#073f35",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
