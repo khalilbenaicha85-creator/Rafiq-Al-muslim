@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#073f35">
+<title>رفيق المسلم</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#f5f4ec;
+ color:#183c32;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:linear-gradient(140deg,#063d32,#126b51);
+ color:white;
+ padding:28px 20px 35px;
+ border-radius:0 0 28px 28px;
+}
+.top{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold}
+.sub{color:#d7e8dc;font-size:13px;margin-top:8px}
+.date{margin-top:28px;font-size:14px;color:#e6d7a4}
+h1{font-size:25px;margin:12px 0}
+.prayer{
+ margin:18px 16px;
+ padding:20px;
+ background:#fff;
+ border-radius:20px;
+ box-shadow:0 5px 18px #0000000c;
+}
+.section-title{font-size:19px;font-weight:bold;margin-bottom:15px}
+.prayers{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.prayer-item{
+ background:#f3f5ed;
+ border-radius:13px;
+ padding:13px 5px;
+ text-align:center;
+ font-size:13px;
+}
+.prayer-item b{display:block;margin-top:8px;color:#126b51;font-size:16px}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:13px;
+ padding:0 16px 100px;
+}
+.card{
+ background:white;
+ border-radius:18px;
+ padding:20px 12px;
+ text-align:center;
+ box-shadow:0 4px 15px #00000008;
+ cursor:pointer;
+}
+.icon{font-size:30px;margin-bottom:10px}
+.card b{font-size:15px}
+.card p{font-size:12px;color:#829087;margin-bottom:0}
+nav{
+ position:fixed;
+ bottom:0;
+ width:100%;
+ background:white;
+ display:flex;
+ justify-content:space-around;
+ padding:13px 5px;
+ box-shadow:0 -4px 15px #0000000c;
+}
+nav button{
+ border:0;background:none;color:#718078;
+ font-size:12px;
+}
+nav span{display:block;font-size:22px;margin-bottom:4px}
+nav button.active{color:#087253;font-weight:bold}
+#content{padding-bottom:20px}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="top">
+  <div class="logo">☪ رفيق المسلم</div>
+  <div>⚙️</div>
+ </div>
+ <div class="sub">رفيقك في طريق الطمأنينة والإيمان</div>
+ <div class="date" id="date"></div>
+ <h1>السلام عليكم ورحمة الله 🌿</h1>
+ <div>اجعل يومك عامراً بذكر الله</div>
+</header>
+
+<div id="content">
+ <div class="prayer">
+  <div class="section-title">🕌 مواقيت الصلاة</div>
+  <div class="prayers">
+   <div class="prayer-item">الفجر<b>05:00</b></div>
+   <div class="prayer-item">الظهر<b>12:30</b></div>
+   <div class="prayer-item">العصر<b>15:45</b></div>
+   <div class="prayer-item">المغرب<b>18:10</b></div>
+   <div class="prayer-item">العشاء<b>19:30</b></div>
+   <div class="prayer-item">القبلة<b>🧭</b></div>
+  </div>
+  <p style="font-size:11px;color:#999">المواقيت المعروضة تجريبية وليست مواقيت محلية دقيقة.</p>
+ </div>
+
+ <div class="section-title" style="padding:0 18px">اكتشف التطبيق</div>
+ <div class="grid">
+  <div class="card" onclick="show('القرآن الكريم','اقرأ القرآن الكريم وتدبر آياته. 📖')">
+   <div class="icon">📖</div><b>القرآن الكريم</b><p>آيات الله العظيمة</p>
+  </div>
+  <div class="card" onclick="show('الأذكار','سبحان الله وبحمده، سبحان الله العظيم.')">
+   <div class="icon">📿</div><b>الأذكار</b><p>أذكار الصباح والمساء</p>
+  </div>
+  <div class="card" onclick="show('السبحة الإلكترونية','اضغط على الزر وابدأ التسبيح.')">
+   <div class="icon">🟢</div><b>السبحة</b><p>سبّح واذكر الله</p>
+  </div>
+  <div class="card" onclick="show('الأدعية','ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.')">
+   <div class="icon">🤲</div><b>الأدعية</b><p>أدعية من القرآن والسنة</p>
+  </div>
+  <div class="card" onclick="show('القبلة','اتجه نحو القبلة عند الصلاة.')">
+   <div class="icon">🧭</div><b>اتجاه القبلة</b><p>اعرف اتجاه الكعبة</p>
+  </div>
+  <div class="card" onclick="show('التقويم الهجري','تابع الأيام والمناسبات الإسلامية.')">
+   <div class="icon">🌙</div><b>التقويم الهجري</b><p>مناسبات إسلامية</p>
+  </div>
+ </div>
+</div>
+
+<nav>
+ <button class="active" onclick="home()"><span>🏠</span>الرئيسية</button>
+ <button onclick="show('القرآن الكريم','قريباً: القرآن الكريم كاملاً.')"><span>📖</span>القرآن</button>
+ <button onclick="show('الأذكار','قريباً: مكتبة الأذكار.')"><span>📿</span>الأذكار</button>
+ <button onclick="show('الإعدادات','إعدادات رفيق المسلم.')"><span>⚙️</span>الإعدادات</button>
+</nav>
+
+<script>
+document.getElementById('date').textContent =
+ new Date().toLocaleDateString('ar-DZ',{
+ weekday:'long',year:'numeric',month:'long',day:'numeric'
+});
+
+const original=document.getElementById('content').innerHTML;
+
+function show(title,description){
+ document.getElementById('content').innerHTML=`
+ <div class="prayer" style="margin-top:25px;text-align:center">
+ <div style="font-size:35px">☪</div>
+ <h2>${title}</h2>
+ <p style="line-height:2">${description}</p>
+ <button onclick="home()" style="background:#126b51;color:white;border:0;padding:13px 28px;border-radius:12px">العودة للرئيسية</button>
+ </div>`;
+}
+function home(){
+ document.getElementById('content').innerHTML=original;
+}
+</script>
+
+</body>
+</html>
