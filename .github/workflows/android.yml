@@ -1,3 +1,4 @@
+
 name: Build Rafiq Al Muslim APK
 
 on:
@@ -11,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -25,26 +26,39 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Setup Android
-        uses: android-actions/setup-android@v3
-        with:
-          packages: |
-            platforms;android-35
-            build-tools;35.0.0
-      
-       
-          
-            
-            
-        
+      - name: Install Android SDK packages
+        shell: bash
+        run: |
+          SDKMANAGER=$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager | sort -V | tail -n 1)
 
-      - name: Prepare Capacitor
+          if [ -z "$SDKMANAGER" ]; then
+            echo "Android SDK Manager not found"
+            exit 1
+          fi
+
+          yes | "$SDKMANAGER" --sdk_root="$ANDROID_HOME" --licenses || true
+
+          "$SDKMANAGER" --sdk_root="$ANDROID_HOME" --install \
+            "platforms;android-35" \
+            "build-tools;35.0.0" \
+            "platform-tools"
+
+      - name: Prepare Capacitor project
         run: |
           mkdir -p www
           cp index.html manifest.json icon.svg service-worker.js www/
-          echo '{"name":"rafiq-muslim","version":"1.0.0","private":true}' > package.json
+
+          npm init -y
           npm install @capacitor/core@7 @capacitor/android@7 @capacitor/cli@7
-          echo '{"appId":"com.rafiqalmuslim.app","appName":"رفيق المسلم","webDir":"www"}' > capacitor.config.json
+
+          cat > capacitor.config.json <<'EOF'
+          {
+            "appId": "com.rafiqalmuslim.app",
+            "appName": "رفيق المسلم",
+            "webDir": "www"
+          }
+          EOF
+
           npx cap add android
           npx cap sync android
 
